@@ -83,7 +83,7 @@ class SortableFlatList extends Component {
             return cur.hidden === null ? acc : cur.hidden.value
           }), false)
 
-          this._androidStatusBarOffset = (isTranslucent || isHidden) ? StatusBar.currentHeight : 0
+          this._androidStatusBarOffset = (isTranslucent || isHidden) ? StatusBar.currentHeight + 48 : 48
         }
         this._offset.setValue((this._additionalOffset + this._containerOffset - this._androidStatusBarOffset) * -1)
         return false
@@ -118,7 +118,7 @@ class SortableFlatList extends Component {
         const spacerMeasurements = this._measurements[spacerIndex]
         const lastElementMeasurements = this._measurements[data.length - 1]
         if (activeRow === -1) return
-        // If user flings row up and lets go in the middle of an animation measurements can error out. 
+        // If user flings row up and lets go in the middle of an animation measurements can error out.
         // Give layout animations some time to complete and animate element into place before calling onMoveEnd
 
         // Spacers have different positioning depending on whether the spacer row is before or after the active row.
@@ -414,14 +414,13 @@ class RowItem extends React.PureComponent {
       move: this.move,
       moveEnd,
     })
-    let wrapperStyle = { opacity: 1 }
-    if (horizontal && isActiveRow) wrapperStyle = { width: 0, opacity: 0 }
-    else if (!horizontal && isActiveRow) wrapperStyle = { height: 0, opacity: 0 }
-
     // Rendering the final row requires padding to be applied at the bottom
     return (
       <View ref={setRef(index)} collapsable={false} style={{ opacity: 1, flexDirection: horizontal ? 'row' : 'column' }}>
-        <View style={wrapperStyle}>
+        <View style={[
+          horizontal ? { width: isActiveRow ? 1 : undefined } : { height: isActiveRow ? 1 : undefined },
+          { opacity: isActiveRow ? 0 : 1, overflow: 'hidden' }
+        ]}>
           {component}
         </View>
       </View>
