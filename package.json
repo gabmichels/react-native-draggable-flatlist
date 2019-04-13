@@ -20,10 +20,24 @@
     "sort",
     "list"
   ],
+  "devDependencies": {
+    "babel-eslint": "^8.2.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jest": "^21.15.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0"
+  },
   "author": "Daniel Merrill",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/computerjazz/react-native-draggable-flatlist/issues"
   },
-  "homepage": "https://github.com/computerjazz/react-native-draggable-flatlist#readme"
+  "homepage": "https://github.com/computerjazz/react-native-draggable-flatlist#readme",
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-native": "^0.59.3"
+  }
 }
